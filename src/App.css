@@ -40,3 +40,51 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes confetti {
+  from {
+    transform: translateY(-50vh);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-confetti {
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+}
+
+.animate-confetti:before,
+.animate-confetti:after {
+  position: absolute;
+  top: 0;
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(to left, #f7d61d, #fac038);
+  animation: confetti 3s ease-out infinite;
+}
+
+.animate-confetti:before {
+  left: 25%;
+  animation-delay: 0s;
+}
+
+.animate-confetti:after {
+  left: 75%;
+  animation-delay: -2s;
+}
+.bhdLno {
+  position: relative;
+  width: 100vw !important;
+  max-width: 650px !important;
+  height: 100vw !important;
+  max-height: 650px !important;
+  object-fit: contain;
+  flex-shrink: 0;
+  z-index: 5;
+  pointer-events: none;
+}
