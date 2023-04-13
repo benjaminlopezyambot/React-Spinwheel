@@ -7,12 +7,25 @@ const Roulette = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const data = [
     {
+      option: "Free Spin",
+      value: "1",
+    },
+    {
+      option: "Try Again ",
+      value: "0",
+      style: { textColor: "rgb(239 68 68)" },
+    },
+    {
       option: "$5",
       value: "5",
     },
     {
       option: "$500",
       value: "500",
+    },
+    {
+      option: "Free Spin",
+      value: "1",
     },
     {
       option: "$10",
@@ -21,6 +34,7 @@ const Roulette = () => {
     {
       option: "Try Again ",
       value: "0",
+      style: { textColor: "rgb(239 68 68)" },
     },
     {
       option: "$500",
@@ -29,31 +43,37 @@ const Roulette = () => {
     {
       option: "Try Again",
       value: "0",
-    },
-    {
-      option: "$1",
-      value: "1",
-    },
-    {
-      option: "Try Again",
-      value: "0",
-    },
-    {
-      option: "$5",
-      value: "5",
+      style: { textColor: "rgb(239 68 68)" },
     },
     {
       option: "Free Spin",
       value: "1",
     },
     {
-      option: "$25",
-      value: "25",
+      option: "Try Again",
+      value: "0",
+      style: { textColor: "rgb(239 68 68)" },
     },
     {
-      option: "$12",
-      value: "12",
+      option: "$5",
+      value: "5",
     },
+    // {
+    //   option: "Free Spin",
+    //   value: "1",
+    // },
+    // {
+    //   option: "$25",
+    //   value: "25",
+    // },
+    // {
+    //   option: "Free Spin",
+    //   value: "1",
+    // },
+    // {
+    //   option: "$12",
+    //   value: "12",
+    // },
   ];
   const backgroundColorsData = [
     "rgb(139 92 246)",

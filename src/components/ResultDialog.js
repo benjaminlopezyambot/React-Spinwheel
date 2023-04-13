@@ -51,7 +51,10 @@ function Modal({ open, onClose, result }) {
                     </>
                   ) : (
                     <>
-                      <h2 className="text-9xl font-bold mb-7 font-sans text-yellow-500 antialiased">
+                      <h2
+                        style={{ fontSize: "250px" }}
+                        className=" font-bold mb-7 font-sans text-red-500 antialiased"
+                      >
                         You lost!
                       </h2>
 
