@@ -65,7 +65,7 @@ function Modal({ open, onClose, result }) {
                         }}
                         className=" font-bold mb-7 leading-none  font-sans text-red-500 antialiased"
                       >
-                        You Lose!
+                        You Lost!
                       </h2>
 
                       <p
