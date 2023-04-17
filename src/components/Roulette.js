@@ -3,60 +3,61 @@ import { Wheel } from "react-custom-roulette";
 import "../App.css";
 import Modal from "./ResultDialog";
 import ResultCard from "./ResultCard";
+import Sidebar from "./SideBar";
 const Roulette = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const data = [
     {
       option: "Free Spin",
-      value: "1",
+      value: 1,
     },
     {
       option: "Try Again ",
-      value: "0",
+      value: 0,
       style: { textColor: "rgb(239 68 68)" },
     },
     {
       option: "$5",
-      value: "5",
+      value: 5,
     },
     {
       option: "$500",
-      value: "500",
+      value: 500,
     },
     {
       option: "Free Spin",
-      value: "1",
+      value: 1,
     },
     {
       option: "$10",
-      value: "10",
+      value: 10,
     },
     {
       option: "Try Again ",
-      value: "0",
+      value: 0,
       style: { textColor: "rgb(239 68 68)" },
     },
     {
       option: "$500",
-      value: "500",
+      value: 500,
     },
     {
       option: "Try Again",
-      value: "0",
+      value: 0,
       style: { textColor: "rgb(239 68 68)" },
     },
     {
       option: "Free Spin",
-      value: "1",
+      value: 1,
     },
     {
       option: "Try Again",
-      value: "0",
+      value: 0,
       style: { textColor: "rgb(239 68 68)" },
     },
     {
       option: "$5",
-      value: "5",
+      value: 5,
     },
     // {
     //   option: "Free Spin",
@@ -106,41 +107,14 @@ const Roulette = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <>
       <div
         className="flex  overflow-hidden w-full h-screen"
         style={{ position: "relative" }}
       >
-        <div
-          className="w-1/5 p-4"
-          style={{
-            height: "50%",
-          }}
-        >
-          <ul>
-            {results.length > 0 ? (
-              <>
-                <h2 className="text-2xl text-white font-bold mb-2">Results</h2>
-                {results
-                  .slice(0)
-                  .reverse()
-                  .map((result, index) => (
-                    <>
-                      <ResultCard
-                        key={index}
-                        option={result.option}
-                        value={result.value}
-                        status={result.status}
-                      />
-                    </>
-                  ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </ul>
-        </div>
+        {results.length > 0 && <Sidebar isOpen={true} results={results} />}
         <div
           style={{
             width: "100%",
