@@ -117,7 +117,7 @@ function Sidebar({ results, credit }) {
         </div>
         {results.length > 0 && (
           <button
-            className={`bg-red-600 z-30 text-white text-xl font-bold px-4 py-2 rounded-lg transition-all duration-500 hover:bg-rose-500 absolute ${
+            className={`bg-cyan-500 z-30 text-white text-xl font-bold px-4 py-2 rounded-lg transition-all duration-500 hover:bg-cyan-600 absolute ${
               window.innerWidth <= 425 ? "top-2" : "top-4"
             } ${window.innerWidth <= 425 ? "right-2" : "right-5"} `}
             onClick={toggleSidebar}
