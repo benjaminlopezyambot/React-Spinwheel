@@ -4,11 +4,13 @@ import Roulette from "./components/Roulette";
 
 function App() {
   return (
-    <div className="App bg-violet-900">
-      <div className="flex">
-        <Roulette />
+    <>
+      <div className="App bg-violet-900">
+        <div className="flex">
+          <Roulette />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

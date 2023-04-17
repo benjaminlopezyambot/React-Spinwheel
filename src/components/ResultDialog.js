@@ -8,7 +8,7 @@ function Modal({ open, onClose, result }) {
         open={open}
         onClose={onClose}
         // className="fixed z-10 inset-0 overflow-y-auto  bg-gradient-to-r from-pink-600 to-transparent"
-        className="fixed z-10 inset-0 overflow-y-auto  bg-indigo-900 bg-opacity-80"
+        className="fixed z-40 inset-0 overflow-y-auto  bg-indigo-900 bg-opacity-80"
       >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child
