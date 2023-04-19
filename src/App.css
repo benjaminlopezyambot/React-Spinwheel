@@ -10,7 +10,12 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.bg-wheel {
+  background: url(../public/bg-spining-wheel.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -87,4 +92,111 @@
   flex-shrink: 0;
   z-index: 5;
   pointer-events: none;
+}
+img[alt~="roulette-static"] {
+  position: absolute;
+  z-index: 5;
+  width: 13%;
+  right: 26px;
+  top: 44px;
+  content: url("../public/pointer.gif");
+}
+.sc-dlfnbm {
+  position: relative;
+}
+.sc-dlfnbm:after {
+  position: absolute;
+  content: "";
+  background-color: #00000000;
+  width: 91%;
+  height: 91%;
+  border-radius: 50%;
+  z-index: 999;
+  box-shadow: inset 5px 5px 12px 20px rgb(0 0 0 / 32%);
+}
+.sc-dlfnbm:before {
+  position: absolute;
+  content: "";
+  background-color: #00000000;
+  width: 93%;
+  height: 93%;
+  border-radius: 50%;
+  z-index: 2;
+  border: 4px dotted #ffff;
+}
+.bg-green {
+  background: #1daa21;
+}
+.bg-red {
+  background: #fd0000;
+}
+.rounded {
+  border-radius: 25px;
+}
+.spining-btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.spining-btn span {
+  display: block;
+  /* align-items: center; */
+  width: 90px;
+  margin: auto;
+  height: 90px;
+  position: relative;
+  /* padding: 30% 2em; */
+  box-sizing: border-box;
+  color: #fff;
+  background-clip: padding-box;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 90px;
+  text-transform: uppercase;
+  background: rgb(249, 226, 124);
+  background: linear-gradient(
+    147deg,
+    rgb(252 152 107) 0%,
+    rgb(251 133 81) 35%,
+    #e22f1f 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 900;
+}
+.spining-btn:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -5px;
+  /* !importanté */
+  border-radius: inherit;
+  /* !importanté */
+  background: rgb(222, 182, 8);
+  background: linear-gradient(
+    90deg,
+    rgba(222, 182, 8, 1) 0%,
+    rgba(255, 216, 47, 1) 50%,
+    rgba(222, 182, 8, 1) 100%
+  );
+}
+.some-dot {
+  position: relative;
+}
+.some-dot:after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: aliceblue;
+  z-index: 9999;
+  top: -10px;
+  left: 20%;
 }

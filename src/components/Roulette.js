@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import "../App.css";
 import Modal from "./ResultDialog";
-import ResultCard from "./ResultCard";
 import Sidebar from "./SideBar";
-import { toast } from "react-toastify";
 import Alert from "./Alert";
 const DataOptions = [
   {
-    option: "$1",
-    value: 1,
+    option: "$2",
+    value: 2,
   },
   {
     option: "Free Spin",
@@ -18,16 +16,16 @@ const DataOptions = [
   {
     option: "Try Again ",
     value: 0,
-    style: { textColor: "rgb(239 68 68)" },
+    style: { textColor: "rgb(223 40 17)" },
   },
   {
-    option: "$1",
-    value: 1,
+    option: "$2",
+    value: 2,
   },
   {
     option: "Try Again",
     value: 0,
-    style: { textColor: "rgb(239 68 68)" },
+    style: { textColor: "rgb(223 40 17)" },
   },
   {
     option: "$5",
@@ -36,7 +34,7 @@ const DataOptions = [
   {
     option: "Try Again",
     value: 0,
-    style: { textColor: "rgb(239 68 68)" },
+    style: { textColor: "rgb(256 256 256)" },
   },
   {
     option: "$500",
@@ -53,11 +51,11 @@ const DataOptions = [
   {
     option: "Try Again ",
     value: 0,
-    style: { textColor: "rgb(239 68 68)" },
+    style: { textColor: "rgb(223 40 17)" },
   },
   {
-    option: "$1",
-    value: 1,
+    option: "$2",
+    value: 2,
   },
   {
     option: "$500",
@@ -66,20 +64,20 @@ const DataOptions = [
   {
     option: "Try Again",
     value: 0,
-    style: { textColor: "rgb(239 68 68)" },
+    style: { textColor: "rgb(223 40 17)" },
   },
   {
     option: "Free Spin",
     value: 1,
   },
   {
-    option: "$1",
-    value: 1,
+    option: "$2",
+    value: 2,
   },
   {
     option: "Try Again",
     value: 0,
-    style: { textColor: "rgb(239 68 68)" },
+    style: { textColor: "rgb(223 40 17)" },
   },
   {
     option: "$5",
@@ -87,22 +85,23 @@ const DataOptions = [
   },
 ];
 const backgroundColorsData = [
-  "rgb(139 92 246)",
-  "rgb(91 33 182)",
-  "rgb(167 139 250)",
+  "rgb(223 40 15)",
+  "rgb(249 129 71)",
+  "rgb(251 149 100)",
 ];
-const outerBorderColorData = "rgb(59 7 100)";
+const outerBorderColorData = "rgb(242, 101, 34)";
 
 const Roulette = () => {
   const [mustSpin, setMustSpin] = useState(false);
-  const [credit, setCredit] = useState(1);
+  const [credit, setCredit] = useState(100);
   const [open, setOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
   const [results, setResults] = useState([]);
-  const Win = pickIndex();
+  const WinningPercentage = 1;
+  const Win = chooseOption();
   const [result, setResult] = useState({
     option: "",
     value: "",
@@ -120,6 +119,9 @@ const Roulette = () => {
     setMustSpin(false);
     setOpen(true);
     setCredit(credit - 1);
+    if (DataOptions[Win].value > 0) {
+      setCredit(credit + DataOptions[Win].value);
+    }
   };
 
   function handleStartSpinning() {
@@ -130,47 +132,44 @@ const Roulette = () => {
     }
   }
 
-  function pickIndex() {
-    // Array of values
-
-    // Randomly pick a number between 0 and 999,999
-    const randomNumber = Math.floor(Math.random() * 1000000);
-
-    // If the random number is less than 900,000, pick the first two values
-    if (randomNumber < 900000) {
-      const tryAgainIndices = [];
-      const lowerValueIndices = [];
-
-      // Find the indices of all the "Try Again" and lower value options
-      DataOptions.forEach((option, index) => {
-        if (option.value === 0) {
-          if (option.option === "Try Again") {
-            tryAgainIndices.push(index);
-          } else {
-            lowerValueIndices.push(index);
-          }
-        }
-      });
-
-      // If there are "Try Again" options, pick a random index from those
-      if (tryAgainIndices.length > 0) {
-        return tryAgainIndices[
-          Math.floor(Math.random() * tryAgainIndices.length)
-        ];
-      }
-
-      // Otherwise, pick a random index from the lower value options
-      return lowerValueIndices[
-        Math.floor(Math.random() * lowerValueIndices.length)
-      ];
-    }
-
-    // Otherwise, pick a random index from the entire array
-    return Math.floor(Math.random() * DataOptions.length);
-  }
   const hideAlert = () => {
     setShowAlert(false);
   };
+  function chooseOption() {
+    // Define the winning percentage
+    const winningPercentage = 100 - WinningPercentage;
+
+    // Generate a random number between 0 and 99
+    const randomNumber = Math.floor(Math.random() * 100);
+
+    // Check if the random number falls within the winning percentage
+    if (randomNumber < winningPercentage) {
+      // Filter the options to only include those with a value less than or equal to 1
+      const filteredOptions = DataOptions.filter((option) => option.value <= 1);
+
+      // Choose a random option from the filtered options
+      const randomIndex = Math.floor(Math.random() * filteredOptions.length);
+
+      // Get the index of the chosen option from the original options array
+      const chosenIndex = DataOptions.indexOf(filteredOptions[randomIndex]);
+
+      // Return the index of the chosen option
+      return chosenIndex;
+    } else {
+      // Filter the options to only include those with a value greater than 1
+      const filteredOptions = DataOptions.filter((option) => option.value > 1);
+
+      // Choose a random option from the filtered options
+      const randomIndex = Math.floor(Math.random() * filteredOptions.length);
+
+      // Get the index of the chosen option from the original options array
+      const chosenIndex = DataOptions.indexOf(filteredOptions[randomIndex]);
+
+      // Return the index of the chosen option
+      return chosenIndex;
+    }
+  }
+
   return (
     <>
       <div
@@ -206,7 +205,7 @@ const Roulette = () => {
             data={DataOptions}
             textColors={["#ffffff"]}
             fontSize={15}
-            outerBorderWidth={10}
+            outerBorderWidth={16}
             outerBorderColor={outerBorderColorData}
             backgroundColors={backgroundColorsData}
             innerBorderWidth={0}
@@ -215,15 +214,15 @@ const Roulette = () => {
             textDistance={70}
             onStopSpinning={handleSpinStop}
             onStartSpinning={handleStartSpinning}
-            innerRadius={(15, 15)}
+            innerRadius={(0, 0)}
           />
           <button
             className={`h-16 w-16 rounded-full shadow-lg shadow-yellow-800/30 ${
-              credit === 0 ? "bg-yellow-600" : "bg-yellow-500"
+              credit === 0 ? "bg-yellow" : "bg-yellow spining-btn"
             } text-violet-900 font-bold hover:scale-110 duration-300 flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10`}
             onClick={() => handleStartSpinning()}
           >
-            Spin
+            <span>Spin</span>
           </button>
         </div>
       </div>

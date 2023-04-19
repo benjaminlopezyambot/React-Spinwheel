@@ -5,7 +5,7 @@ import Roulette from "./components/Roulette";
 function App() {
   return (
     <>
-      <div className="App bg-violet-900">
+      <div className="App bg-wheel">
         <div className="flex">
           <Roulette />
         </div>

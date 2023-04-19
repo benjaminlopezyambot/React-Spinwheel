@@ -153,8 +153,8 @@ function Sidebar({ results, credit }) {
         <div className="">
           <button
             className={`${
-              credit > 0 ? "text-white" : "text-red-500"
-            } text-xl font-bold px-4 py-2 rounded-xl border-dotted border-2 border-sky-500 absolute top-2 left-5`}
+              credit > 0 ? "text-white bg-green" : "text-white bg-red"
+            } text-xl font-bold px-4 py-2 rounded absolute top-2 left-5`}
           >
             Credit: {credit}
           </button>
