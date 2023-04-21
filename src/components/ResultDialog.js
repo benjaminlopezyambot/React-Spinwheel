@@ -1,13 +1,12 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-// import { CelebrateImage } from "../assets/celebrate.jpg";
 function Modal({ open, onClose, result }) {
+  console.log("🚀 ~ file: ResultDialog.js:5 ~ Modal ~ result:", result);
   return (
     <Transition show={open} as={Fragment}>
       <Dialog
         open={open}
         onClose={onClose}
-        // className="fixed z-40 inset-0 overflow-y-auto  bg-indigo-900 bg-opacity-80"
         className="fixed z-40 inset-0 overflow-y-auto  "
       >
         <div className="min-h-screen px-4 text-center">

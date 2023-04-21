@@ -1,28 +1,61 @@
-const WinningHistory = () => {
-  // dummy data for winning history table
-  const winningHistoryData = [
-    { id: 1, date: "2023-04-19", amount: "$10" },
-    { id: 2, date: "2023-04-20", amount: "$5" },
-    { id: 3, date: "2023-04-21", amount: "$20" },
-  ];
+import moment from "moment";
 
+const WinningHistory = ({ results }) => {
+  const filterResults =
+    results.length > 0
+      ? results.filter((result) => result.status === "Won")
+      : [];
+  console.log(
+    "🚀 ~ file: WinningHistory.js:4 ~ WinningHistory ~ results:",
+    filterResults
+  );
   return (
-    <table className="table-auto  w-full rounded-lg">
+    <table className="w-full rounded-lg">
       <thead>
         <tr>
-          <th className="px-4 py-2">ID</th>
-          <th className="px-4 py-2">Date</th>
-          <th className="px-4 py-2">Amount</th>
+          <th className="border px-4 py-2 border-dashed text-md text-slate-600">
+            ID
+          </th>
+          <th className="border px-4 py-2 border-dashed text-md text-slate-600">
+            Date
+          </th>
+          <th className="border px-4 py-2 border-dashed text-md text-slate-600">
+            Prize
+          </th>
         </tr>
       </thead>
       <tbody>
-        {winningHistoryData.map(({ id, date, amount }) => (
-          <tr key={id}>
-            <td className="border px-4 py-2">{id}</td>
-            <td className="border px-4 py-2">{date}</td>
-            <td className="border px-4 py-2">{amount}</td>
+        {filterResults.length > 0 ? (
+          filterResults.map(({ id, date, value, option }) => (
+            <tr key={id}>
+              <td className="border-r border-l border-b px-4 py-2 border-dashed">
+                <div className=" flex items-center justify-center text-sm">
+                  #{id}
+                </div>
+              </td>
+              <td className="border-r border-b px-4 py-2 border-dashed">
+                <div className=" flex items-center justify-center text-sm">
+                  {moment(date).format("LLL")}
+                </div>
+              </td>
+              <td
+                className={`  px-4 py-2 border-dashed font-semibold border-b  border-r text-lime-500`}
+              >
+                <div className=" flex items-center justify-center text-sm">
+                  {option}
+                </div>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td className="border-r border-l border-b px-4 py-2 border-dashed">
+              <div className=" flex items-center justify-center text-sm">
+                No Data
+              </div>
+            </td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   );

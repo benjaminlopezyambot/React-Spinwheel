@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import SpinHistory from "./HistoryElements/SpinHistory";
-import WinningHistory from "./HistoryElements/WinningHistory";
+import Rules from "./HistoryElements/Rules";
 import classNames from "classnames";
 
 Modal.setAppElement("#root"); // set the app element for accessibility purposes
@@ -27,10 +26,7 @@ const customStyles = {
     border: "none",
   },
 };
-const tabs = [
-  { id: "spin-history", label: "Spin History" },
-  { id: "winning-history", label: "Winning History" },
-];
+const tabs = [{ id: "rules", label: "Rules" }];
 
 const TabButton = ({ tab, activeTab, onClick }) => (
   <button
@@ -39,12 +35,8 @@ const TabButton = ({ tab, activeTab, onClick }) => (
       tab.id === activeTab
         ? `
         ${
-          activeTab === "winning-history" &&
-          "border-b-2  border-lime-500 text-lime-500"
-        }
-        ${
-          activeTab === "spin-history" &&
-          "border-b-2  border-cyan-500 text-cyan-500"
+          activeTab === "rules" &&
+          "border-b-2  border-yellow-500 text-yellow-500"
         }`
         : "text-gray-500 hover:text-gray-700",
       "py-2 px-4 focus:outline-none "
@@ -61,8 +53,8 @@ const TabPanel = ({ tab, activeTab, children }) => (
   </div>
 );
 
-const HistoryDialog = ({ modalIsOpen, handleModalOpen, results }) => {
-  const [activeTab, setActiveTab] = useState("spin-history");
+const RulesDialog = ({ modalIsOpen, handleModalOpen }) => {
+  const [activeTab, setActiveTab] = useState("rules");
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
   };
@@ -105,12 +97,7 @@ const HistoryDialog = ({ modalIsOpen, handleModalOpen, results }) => {
         <div className="mt-4">
           {tabs.map((tab) => (
             <TabPanel key={tab.id} tab={tab} activeTab={activeTab}>
-              {activeTab === "spin-history" && (
-                <SpinHistory results={results} />
-              )}
-              {activeTab === "winning-history" && (
-                <WinningHistory results={results} />
-              )}
+              <Rules />
             </TabPanel>
           ))}
         </div>
@@ -119,4 +106,4 @@ const HistoryDialog = ({ modalIsOpen, handleModalOpen, results }) => {
   );
 };
 
-export default HistoryDialog;
+export default RulesDialog;

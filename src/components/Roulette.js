@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import "../App.css";
 import Modal from "./ResultDialog";
-import Sidebar from "./SideBar";
 import Alert from "./Alert";
-import HistoryDialog from "./HistoryDialog";
 const DataOptions = [
   {
     option: "$2",
@@ -92,22 +90,18 @@ const backgroundColorsData = [
 ];
 const outerBorderColorData = "rgb(242, 101, 34)";
 
-const Roulette = () => {
+const Roulette = ({ setResultData, credit, setCredit }) => {
   const [mustSpin, setMustSpin] = useState(false);
-  const [credit, setCredit] = useState(100);
   const [open, setOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [result, setResult] = useState({});
+  const [results, setResults] = useState([]);
+  const WinningPercentage = 50;
+  const Win = chooseOption();
+
   const handleClose = () => {
     setOpen(false);
   };
-  const [results, setResults] = useState([]);
-  const WinningPercentage = 1;
-  const Win = chooseOption();
-  const [result, setResult] = useState({
-    option: "",
-    value: "",
-  });
-
   const handleSpinStop = () => {
     setResult(DataOptions[Win]);
     const checkResult = {
@@ -115,6 +109,7 @@ const Roulette = () => {
       value: DataOptions[Win].value,
       status: DataOptions[Win].value > 0 ? "Won" : "Lose",
       id: results.length + 1,
+      date: new Date().toLocaleString(),
     };
     setResults([...results, checkResult]);
     setMustSpin(false);
@@ -123,6 +118,7 @@ const Roulette = () => {
     if (DataOptions[Win].value > 0) {
       setCredit(credit + DataOptions[Win].value);
     }
+    setResultData([...results, checkResult]);
   };
 
   function handleStartSpinning() {
@@ -170,10 +166,12 @@ const Roulette = () => {
       return chosenIndex;
     }
   }
-
   return (
     <>
-      <div className="flex   w-full h-screen " style={{ position: "relative" }}>
+      <div
+        className="flex  overflow-hidden w-full h-screen"
+        style={{ position: "relative" }}
+      >
         {showAlert && (
           <Alert
             type="error"
@@ -182,7 +180,14 @@ const Roulette = () => {
             setShowAlert={hideAlert}
           />
         )}
-        <Sidebar isOpen={true} results={results} credit={credit} />
+        {/* <Sidebar
+          isOpen={true}
+          results={results}
+          credit={credit}
+          handleModalOpen={handleModalOpen}
+          isModalOpen={modalIsOpen}
+          hideResult={hideResult}
+        /> */}
         {/* )} */}
         <div
           style={{
@@ -223,8 +228,7 @@ const Roulette = () => {
           </button>
         </div>
       </div>
-      {/* <Modal open={open} onClose={handleClose} result={result} /> */}
-      <HistoryDialog isOpen={open} onClose={handleClose} result={result} />
+      <Modal open={open} onClose={handleClose} result={result} />
     </>
   );
 };
