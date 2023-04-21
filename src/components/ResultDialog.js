@@ -20,7 +20,7 @@ function Modal({ open, onClose, result }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-80" />
           </Transition.Child>
 
           <Transition.Child
@@ -34,18 +34,25 @@ function Modal({ open, onClose, result }) {
           >
             <div className="flex items-center transition-all justify-center min-h-screen">
               <div className=" rounded-lg p-6  mx-auto bg-white">
+                <div className="flex justify-center items-center">
+                  {result.value > 0 ? (
+                    <img
+                      src="./assets/celebrate.jpg"
+                      alt="celebrate"
+                      width={450}
+                    />
+                  ) : (
+                    <img src="./assets/lose.jpg" alt="celebrate" width={250} />
+                  )}
+                </div>
                 <div className="text-center">
-                  {/* <img src={CelebrateImage} alt="celebrate" /> */}
                   {result.value > 0 ? (
                     <>
                       <h2
-                        style={{
-                          fontSize:
-                            window.innerWidth <= 425 ? "130px" : "250px",
-                        }}
-                        className=" font-bold leading-none  mb-7 font-sans text-yellow-400 antialiased"
+                        className={` ${
+                          window.innerWidth <= 425 ? "text-4xl" : "text-7xl"
+                        }font-bold leading-none  mb-7 font-sans text-yellow-400 antialiased`}
                       >
-                        {/* <span class="bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-yellow-400"> */}
                         <span class="bg-clip-text text-transparent bg-lime-500">
                           You Won!
                         </span>
@@ -61,19 +68,18 @@ function Modal({ open, onClose, result }) {
                   ) : (
                     <>
                       <h2
-                        style={{
-                          fontSize:
-                            window.innerWidth <= 425 ? "130px" : "250px",
-                        }}
-                        className=" font-bold mb-7 leading-none  font-sans text-red-500 antialiased"
+                        className={`${
+                          window.innerWidth <= 425 ? "text-4xl" : "text-7xl"
+                        } font-bold mb-7 leading-none  font-sans text-red-500 antialiased`}
                       >
-                        You Lost!
+                        You Lose!
                       </h2>
 
                       <p
-                        className={`${
-                          window.innerWidth <= 425 ? "text-6xl" : "text-9xl"
-                        } font-bold mb-7 font-sans text-red-500 antialiased`}
+                        className={`
+                        ${window.innerWidth <= 425 ? "text-xl" : "text-4xl"}
+                        text-4xl 
+                        font-bold mb-7 font-sans text-red-500 antialiased`}
                       >
                         {result.option}
                       </p>
@@ -81,7 +87,6 @@ function Modal({ open, onClose, result }) {
                   )}
                   <button
                     onClick={onClose}
-                    // className="mt-4 px-4 py-2 bg-gradient-to-r from-pink-600 to-transparent hover:bg-blue-600 text-white rounded-full"
                     className="mt-4 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-full"
                   >
                     Close

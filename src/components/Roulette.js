@@ -4,6 +4,7 @@ import "../App.css";
 import Modal from "./ResultDialog";
 import Sidebar from "./SideBar";
 import Alert from "./Alert";
+import HistoryDialog from "./HistoryDialog";
 const DataOptions = [
   {
     option: "$2",
@@ -172,11 +173,7 @@ const Roulette = () => {
 
   return (
     <>
-      <div
-        className="flex  overflow-hidden w-full h-screen "
-        style={{ position: "relative" }}
-      >
-        {/* {results.length > 0 && ( */}
+      <div className="flex   w-full h-screen " style={{ position: "relative" }}>
         {showAlert && (
           <Alert
             type="error"
@@ -192,7 +189,7 @@ const Roulette = () => {
             width: "100%",
             position: "absolute",
             height: "100%",
-            zIndex: 9,
+            zIndex: 0,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -226,7 +223,8 @@ const Roulette = () => {
           </button>
         </div>
       </div>
-      <Modal open={open} onClose={handleClose} result={result} />
+      {/* <Modal open={open} onClose={handleClose} result={result} /> */}
+      <HistoryDialog isOpen={open} onClose={handleClose} result={result} />
     </>
   );
 };

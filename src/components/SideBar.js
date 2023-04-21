@@ -26,10 +26,6 @@ function Sidebar({ results, credit }) {
 
   return (
     <>
-      {/* {isOpen && (
-        <div className="fixed inset-0 z-20 bg-gray-700 bg-opacity-80"></div>
-      )} */}
-
       <div className="flex h-screen overflow-hidden z-25">
         <div
           className={`bg-violet-950 transform transition-all duration-500 pt-8  z-10 w-80 text-white  p-4 flex-none py-4 px-6 ${
