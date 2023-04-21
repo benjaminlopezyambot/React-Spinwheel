@@ -5,10 +5,6 @@ const WinningHistory = ({ results }) => {
     results.length > 0
       ? results.filter((result) => result.status === "Won")
       : [];
-  console.log(
-    "🚀 ~ file: WinningHistory.js:4 ~ WinningHistory ~ results:",
-    filterResults
-  );
   return (
     <table className="w-full rounded-lg">
       <thead>

@@ -1,18 +1,6 @@
 import moment from "moment/moment";
 
 const SpinHistory = ({ results }) => {
-  // dummy data for spin history table
-  const spinHistoryData = [
-    { id: 1, date: "2023-04-21 07:00:00", result: "Win" },
-    { id: 2, date: "2023-04-20 12:00:00", result: "Lose" },
-    { id: 3, date: "2023-04-20 09:00:00", result: "Win" },
-    { id: 4, date: "2023-04-19 09:00:00", result: "Win" },
-    { id: 5, date: "2023-04-18 06:00:00", result: "Lose" },
-    { id: 6, date: "2023-04-17 22:00:00", result: "Lose" },
-    { id: 7, date: "2023-04-17 11:00:00", result: "Lose" },
-    { id: 8, date: "2023-04-16 16:00:00", result: "Win" },
-  ];
-
   return (
     <table className="w-full rounded-lg">
       <thead>

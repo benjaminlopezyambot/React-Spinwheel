@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 function Modal({ open, onClose, result }) {
-  console.log("🚀 ~ file: ResultDialog.js:5 ~ Modal ~ result:", result);
   return (
     <Transition show={open} as={Fragment}>
       <Dialog
@@ -49,12 +48,10 @@ function Modal({ open, onClose, result }) {
                     <>
                       <h2
                         className={` ${
-                          window.innerWidth <= 425 ? "text-4xl" : "text-7xl"
-                        }font-bold leading-none  mb-7 font-sans text-yellow-400 antialiased`}
+                          window.innerWidth <= 425 ? "text-5xl" : "text-7xl"
+                        } font-bold leading-none  mb-7 font-sans text-lime-500 antialiased`}
                       >
-                        <span class="bg-clip-text text-transparent bg-lime-500">
-                          You Won!
-                        </span>
+                        You Won!
                       </h2>
                       <p
                         className={`${
@@ -68,7 +65,7 @@ function Modal({ open, onClose, result }) {
                     <>
                       <h2
                         className={`${
-                          window.innerWidth <= 425 ? "text-4xl" : "text-7xl"
+                          window.innerWidth <= 425 ? "text-5xl" : "text-7xl"
                         } font-bold mb-7 leading-none  font-sans text-red-500 antialiased`}
                       >
                         You Lose!

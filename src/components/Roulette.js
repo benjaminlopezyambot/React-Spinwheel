@@ -3,6 +3,7 @@ import { Wheel } from "react-custom-roulette";
 import "../App.css";
 import Modal from "./ResultDialog";
 import Alert from "./Alert";
+
 const DataOptions = [
   {
     option: "$2",
@@ -83,6 +84,7 @@ const DataOptions = [
     value: 5,
   },
 ];
+
 const backgroundColorsData = [
   "rgb(223 40 15)",
   "rgb(249 129 71)",
@@ -96,8 +98,9 @@ const Roulette = ({ setResultData, credit, setCredit }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [result, setResult] = useState({});
   const [results, setResults] = useState([]);
-  const WinningPercentage = 50;
-  const Win = chooseOption();
+  const WinningPercentage = 50; //Set the winning percentage
+  const [BetSpin, SetBetSpin] = useState(1); //Set the bet amount
+  const Win = chooseOption(); //Get the winning option
 
   const handleClose = () => {
     setOpen(false);
@@ -114,7 +117,7 @@ const Roulette = ({ setResultData, credit, setCredit }) => {
     setResults([...results, checkResult]);
     setMustSpin(false);
     setOpen(true);
-    setCredit(credit - 1);
+    setCredit(credit - BetSpin);
     if (DataOptions[Win].value > 0) {
       setCredit(credit + DataOptions[Win].value);
     }
@@ -132,6 +135,7 @@ const Roulette = ({ setResultData, credit, setCredit }) => {
   const hideAlert = () => {
     setShowAlert(false);
   };
+
   function chooseOption() {
     // Define the winning percentage
     const winningPercentage = 100 - WinningPercentage;
@@ -166,10 +170,11 @@ const Roulette = ({ setResultData, credit, setCredit }) => {
       return chosenIndex;
     }
   }
+
   return (
     <>
       <div
-        className="flex  overflow-hidden w-full h-screen"
+        className="flex overflow-hidden w-full h-screen"
         style={{ position: "relative" }}
       >
         {showAlert && (
@@ -180,15 +185,6 @@ const Roulette = ({ setResultData, credit, setCredit }) => {
             setShowAlert={hideAlert}
           />
         )}
-        {/* <Sidebar
-          isOpen={true}
-          results={results}
-          credit={credit}
-          handleModalOpen={handleModalOpen}
-          isModalOpen={modalIsOpen}
-          hideResult={hideResult}
-        /> */}
-        {/* )} */}
         <div
           style={{
             width: "100%",

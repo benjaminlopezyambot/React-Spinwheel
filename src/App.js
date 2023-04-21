@@ -15,7 +15,7 @@ function App() {
     <>
       <div className="App bg-wheel">
         <Header result={result} credit={credit} />
-        <div className="flex">
+        <div className="flex ">
           <Roulette
             resultData={result}
             setResultData={setResult}
